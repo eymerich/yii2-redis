@@ -278,13 +278,13 @@ class Connection extends Component
      */
     public function open()
     {
+        if ($this->_socket !== false) {
+            return;
+        }
         // twemproxy/nutcrackes doesn't support DB selection
         if(!$this->twemproxy) {
             // in this casa database is always 0s
             $this->database = 0;
-        }
-        if ($this->_socket !== false) {
-            return;
         }
         $connection = ($this->unixSocket ?: $this->hostname . ':' . $this->port) . ', database=' . $this->database;
         \Yii::trace('Opening redis DB connection: ' . $connection, __METHOD__);
