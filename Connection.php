@@ -282,7 +282,7 @@ class Connection extends Component
             return;
         }
         // twemproxy/nutcrackes doesn't support DB selection
-        if(!$this->twemproxy) {
+        if($this->twemproxy) {
             // in this casa database is always 0s
             $this->database = 0;
         }
